@@ -15,16 +15,41 @@ use App\Http\Controllers\PostsController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+
+//一覧ページ
 Route::get('/index', [PostsController::class, 'index']);
 
+
+//投稿ページ
 Route::get('/create-form', [PostsController::class, 'createForm']);
 
+
+//投稿処理
 Route::post('/post/create', [PostsController::class, 'create']);
+
+
+//更新ページ
+Route::get('post/{id}/update-form', [PostsController::class, 'updateForm']);
+
+
+//更新処理
+Route::post('post/update', [PostsController::class, 'update']);
+
+
+//削除処理
+Route::get('post/{id}/delete', [PostsController::class, 'delete']);
+
+
+//検索処理
+Route::post('/search', [PostsController::class, 'search']);
+
 
 Auth::routes();
 
+
+//認証機能
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

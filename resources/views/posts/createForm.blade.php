@@ -1,37 +1,34 @@
-<!DOCTYPE html>
+@extends('layouts.app')
 
-<html>
-
-
-<head>
-
-<meta charset='utf-8"'>
-
-<link rel='stylesheet' href='/css/app.css'>
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-
-
-<body>
-
-
-<header>
-
-<h1 class='page-header'>新規投稿</h1>
-
-</header>
-
+@section('content')
 <div class='container'>
 
 <h2 class='page-header'>新しく投稿する</h2>
 
+<!-- エラーメッセージ表示 -->
+@if ($errors->any())
+<!--
+  ・$errors:バリデーションを実行するしないに関わらずビューからアクセスすることができる変数
+  ・$errors->any():変数$errorsの中にエラーメッセージがあるかどうかチェックを行うメソッド
+ -->
+<div>
+  <ul>
+    @foreach ($errors->all() as $error)
+    <!-- $errors->all():バリデーションの中のチェックで発生したエラー情報が配列として保持されている -->
+    <li>{{ $error }}</li>
+    @endforeach
+  </ul>
+</div>
+@endif
+
+<!-- urlが 'post/create' となっているところにフォームの値を送る -->
 {!! Form::open(['url' => 'post/create']) !!}
 
 <div class="form-group">
 
 {!! Form::input('text', 'newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '投稿内容']) !!}
+
+{!! Form::input('text', 'userName', null, ['required', 'class' => 'form-control','placeholder' => 'ユーザーネーム']) !!}
 
 </div>
 
@@ -41,17 +38,4 @@
 
 </div>
 
-<footer>
-
-<small>Laravel@crud.curriculum</small>
-
-</footer>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
-</body>
-
-
-</html>
+@endsection

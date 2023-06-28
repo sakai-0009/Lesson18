@@ -173,3 +173,16 @@ button {
   display: block;
 
 }
+
+
+/* 追加 */
+.button-wrapper{
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-search{
+  color: #fff;
+  background-color: #9e9c00;
+  cursor: pointer;
+}

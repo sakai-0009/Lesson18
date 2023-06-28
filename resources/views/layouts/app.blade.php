@@ -20,6 +20,11 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+    <!-- 追加 -->
+       <header>
+        <h1 class="page-header">掲示板</h1>
+    </header>
+
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -79,5 +84,15 @@
             @yield('content')
         </main>
     </div>
+
+     <!-- 追加 -->
+    <footer>
+        <small>Laravel@crud.curriculum</small>
+    </footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+
+</body>
 </body>
 </html>
