@@ -26,8 +26,14 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
+//ログインページ
+Route::get('/', function () {
+    return view('auth/login');
+});
+
+
 //一覧ページ
-Route::get('/', [PostsController::class, 'index']);
+Route::get('/index', [PostsController::class, 'index']);
 
 
 //投稿ページ
