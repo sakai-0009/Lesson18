@@ -19,9 +19,15 @@ use App\Http\Controllers\PostsController;
 //     return view('welcome');
 // });
 
+Auth::routes();
+
+
+//認証機能
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 //一覧ページ
-Route::get('/index', [PostsController::class, 'index']);
+Route::get('/', [PostsController::class, 'index']);
 
 
 //投稿ページ
@@ -46,10 +52,3 @@ Route::get('post/{id}/delete', [PostsController::class, 'delete']);
 
 //検索処理
 Route::post('/search', [PostsController::class, 'search']);
-
-
-Auth::routes();
-
-
-//認証機能
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

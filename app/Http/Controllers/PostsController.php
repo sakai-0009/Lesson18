@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\DB;
 class PostsController extends Controller
 {
 
+
+// 認証機能
+public function __construct()
+{
+  $this->middleware('auth');
+}
+
+
 // 一覧表示
 public function index()
  {
@@ -114,10 +122,4 @@ public function search(Request $request)
   }
 }
 
-
-// 認証機能
-public function __construct()
-{
-  $this->middleware('auth');
-}
 }
