@@ -39,7 +39,7 @@ class LoginController extends Controller
     }
 
     // ログアウト後のリダイレクト先変更
-    protected function loggedOut(\Illuminate\Http\Request $request) {
-      return redirect('login');
-    }
+    // protected function loggedOut(\Illuminate\Http\Request $request) {
+    //   return redirect('login');
+    // }
 }
