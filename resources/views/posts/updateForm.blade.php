@@ -23,7 +23,9 @@
 
 {!! Form::hidden('id', $post->id) !!}
 
-{!! Form::input('text', 'upName', $post->user_name, ['required', 'class' => 'form-control']) !!}
+<p>ユーザー名: {{ $user_name }}</p>
+
+<!-- {!! Form::input('text', 'upName', $post->user_name, ['required', 'class' => 'form-control']) !!} -->
 
 {!! Form::input('text', 'upPost', $post->contents, ['required', 'class' => 'form-control']) !!}
 

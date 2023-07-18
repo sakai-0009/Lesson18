@@ -25,6 +25,9 @@ public function index()
   //「DB::table('posts')」でpostsテーブルを指定、「->get()」でデータを取得
   $list = DB::table('posts')->get();
 
+  // $user_name =DB::table('posts') ->select('user_name')->get();
+
+
   //$listという変数をlistsという名前でviewに渡す(view側では「$lists」という変数が使用可能)
   return view('posts.index',['lists'=>$list]);
  }
@@ -33,7 +36,9 @@ public function index()
 // 新規作成画面
 public function createForm()
 {
-  return view('posts.createForm');
+  $user_name = \Auth::user()->name;
+
+  return view('posts.createForm',['user_name'=>$user_name]);
 }
 
 
@@ -44,17 +49,19 @@ public function create(Request $request)
 {
 //validateメソッドによるバリデーション
   $request->validate([
-    'newPost' => 'required|string|max:100|regex:/[^　]+$/',
-    'userName' =>'required|string|regex:/[^　]+$/'
+    'newPost' => 'required|string|max:100|regex:/[^　]+$/'
+    // 'userName' =>'required|string|regex:/[^　]+$/'
   ]);
   //required:入力必須、string:文字列、max:文字数、regex:禁止文字
 
   $post = $request->input('newPost');
-  $name = $request->input('userName');
+  // $name = $request->input('userName');
+  $user_name = \Auth::user()->name;
+
 
   DB::table('posts')->insert([
     'contents' => $post,
-    'user_name' => $name
+    'user_name' => $user_name
   ]);
 
   return redirect('/index');
@@ -64,10 +71,12 @@ public function create(Request $request)
 // 更新画面
 public function updateForm($id)
 {
+  $user_name = \Auth::user()->name;
+
   $post = DB::table('posts')
   ->where('id', $id)
   ->first();
-  return view('posts.updateForm', ['post' => $post]);
+  return view('posts.updateForm', ['post' => $post,'user_name'=>$user_name]);
 }
 
 
@@ -76,18 +85,20 @@ public function updateForm($id)
 public function update(Request $request)
 {
   $request->validate([
-  'newPost' => 'required|string|max:100|regex:/[^　]+$/',
-  'userName' =>'required|string|regex:/[^　]+$/'
+  'newPost' => 'string|max:100|regex:/[^　]+$/'
+  // 'userName' =>'required|string|regex:/[^　]+$/'
   ]);
 
   $id = $request->input('id');
   $up_post = $request->input('upPost');
-  $up_name = $request->input('upName');
+  // $up_name = $request->input('upName');
+  $user_name = \Auth::user()->name;
+
   DB::table('posts')
   ->where('id', $id)
   ->update(
     ['contents' => $up_post,
-    'user_name' => $up_name]
+    'user_name' => $user_name]
   );
 
   return redirect('/index');

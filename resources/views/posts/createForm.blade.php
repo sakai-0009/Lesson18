@@ -26,9 +26,11 @@
 
 <div class="form-group">
 
+<p>ユーザー名: {{ $user_name }}</p>
+
 {!! Form::input('text', 'newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '投稿内容']) !!}
 
-{!! Form::input('text', 'userName', null, ['required', 'class' => 'form-control','placeholder' => 'ユーザーネーム']) !!}
+<!-- {!! Form::input('text', 'userName', null, ['required', 'class' => 'form-control','placeholder' => 'ユーザーネーム']) !!} -->
 
 </div>
 
