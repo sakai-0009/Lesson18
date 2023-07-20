@@ -85,7 +85,7 @@ public function updateForm($id)
 public function update(Request $request)
 {
   $request->validate([
-  'newPost' => 'string|max:100|regex:/[^　]+$/'
+  'upPost' => 'required|string|max:100|regex:/[^　]+$/'
   // 'userName' =>'required|string|regex:/[^　]+$/'
   ]);
 
