@@ -58,3 +58,5 @@ Route::get('post/{id}/delete', [PostsController::class, 'delete']);
 
 //検索処理
 Route::post('/search', [PostsController::class, 'search']);
+//検索処理
+Route::post('/search', [PostsController::class, 'search']);
